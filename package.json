@@ -18,7 +18,7 @@
     "lint": "yarn workspaces run lint"
   },
   "lint-staged": {
-    "*.+(js|ts|tsx|css|json)": [
+    "*.+(js|ts|tsx|css)": [
       "yarn lint --fix"
     ],
     "*.+(js|ts|tsx|md|css|json)": [

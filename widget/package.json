@@ -1,0 +1,13 @@
+{
+  "name": "widget",
+  "version": "0.0.1",
+  "description": "Widget for Lea.chat",
+  "main": "index.js",
+  "repository": "https://github.com/lea.chat",
+  "author": "Samuel Amoah <sa.am@programmer.net>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "preact": "^10.5.14"
+  }
+}

@@ -1,15 +1,16 @@
 {
-    "private": true,
-    "workspaces": [
-        "widget",
-        "server",
-        "dashboard"
-    ],
-    "devDependencies": {
-        "husky": "^7.0.0"
-    },
-    "scripts": {
-        "prepare": "husky install",
-        "test": ""
-    }
+  "private": true,
+  "workspaces": [
+    "widget",
+    "server",
+    "dashboard"
+  ],
+  "devDependencies": {
+    "husky": "^7.0.0",
+    "prettier": "^2.3.2"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "prettier": "prettier --write '**/*.+(js|ts|tsx|md|css|json)'"
+  }
 }

@@ -1,0 +1,15 @@
+{
+    "private": true,
+    "workspaces": [
+        "widget",
+        "server",
+        "dashboard"
+    ],
+    "devDependencies": {
+        "husky": "^7.0.0"
+    },
+    "scripts": {
+        "prepare": "husky install",
+        "test": ""
+    }
+}

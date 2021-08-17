@@ -1,6 +1,6 @@
 import { h } from 'preact'
 
-const CloseIcon = ({ size = 35 }) => (
+const CloseIcon = ({ size = 20 }) => (
   <svg
     width={size}
     height={size}

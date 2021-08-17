@@ -1,6 +1,6 @@
 import { h } from 'preact'
 
-const ChatBubbleIcon = ({ size = 35 }) => (
+const ChatBubbleIcon = ({ size = 25 }) => (
   <svg
     width={size}
     height={size}

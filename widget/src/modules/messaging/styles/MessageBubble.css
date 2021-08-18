@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.bubble {
+  display: inline-block;
+  border-radius: 12px;
+  padding: 1em;
+  max-width: 60%;
+  font-size: 12px;
+  margin-top: 1em;
+}
+
+.right {
+  border-top-right-radius: 0;
+  background-color: var(--color-blue);
+  margin-left: auto;
+  color: white;
+}
+
+.left {
+  border-top-left-radius: 0;
+  background-color: var(--color-grey-lighter);
+  color: var(--color-grey-darker);
+}

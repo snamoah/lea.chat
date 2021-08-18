@@ -1,12 +1,11 @@
-import { FunctionalComponent, h } from 'preact'
-import style from './style.css'
+import { FunctionComponent, h } from 'preact'
+import Layout from '../../layouts/DefaultLayout'
 
-const Home: FunctionalComponent = () => {
+const Home: FunctionComponent = () => {
   return (
-    <div class={style.home}>
-      <h1>Home</h1>
-      <p>This is the Home component.</p>
-    </div>
+    <Layout>
+      <h1>Index Page</h1>
+    </Layout>
   )
 }
 

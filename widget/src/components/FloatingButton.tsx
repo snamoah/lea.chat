@@ -6,19 +6,11 @@ import styles from '../styles/FloatingButton.css'
 interface FloatingButtonProps {
   onClick(): void
   active: boolean
-  position?: 'left' | 'right'
 }
 
-const FloatingButton: FunctionComponent<FloatingButtonProps> = ({
-  position = 'right',
-  onClick,
-  active,
-}) => {
+const FloatingButton: FunctionComponent<FloatingButtonProps> = ({ onClick, active }) => {
   return (
-    <div
-      className={`${styles.container} ${styles.bottom} ${styles[position]}`}
-      onClick={onClick}
-    >
+    <div className={styles.container} onClick={onClick}>
       {active ? <CloseIcon /> : <ChatBubbleIcon />}
     </div>
   )

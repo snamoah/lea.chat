@@ -1,0 +1,15 @@
+.container {
+  max-width: 300px;
+  width: 300px;
+}
+
+.header {
+  height: 30px;
+  background-color: var(--color-blue);
+  margin: 0;
+}
+
+.main {
+  background-color: var(--color-grey-lighter);
+  padding: 0 1em;
+}

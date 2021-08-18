@@ -1,0 +1,26 @@
+.root {
+  --color-blue: #0466c8;
+  --color-green: #00cb83;
+  --color-grey-darker: #5c677d;
+  --color-grey-dark: #979dac;
+  --color-grey-light: rgba(151, 157, 172, 0.5);
+  --color-grey-lighter: rgba(151, 157, 172, 0.16);
+}
+
+.container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom {
+  bottom: 1.5em;
+}
+
+.right {
+  right: 1.5em;
+}
+
+.left {
+  left: 1.5em;
+}

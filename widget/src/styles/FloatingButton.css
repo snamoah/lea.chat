@@ -6,19 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
   color: white;
   padding: 0.5em;
-}
-
-.bottom {
-  bottom: 1.5em;
-}
-
-.right {
-  right: 1.5em;
-}
-
-.left {
-  left: 1.5em;
+  align-self: flex-end;
 }

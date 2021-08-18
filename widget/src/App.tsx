@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { h, FunctionalComponent } from 'preact'
 import { useState } from 'preact/hooks'
 import FloatingButton from './components/FloatingButton'
-import Home from './pages/home'
+import Home from './pages/Home'
 import { Route, Router } from './Router'
 import styles from './styles/global.css'
 

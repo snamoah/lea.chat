@@ -6,12 +6,6 @@ import Home from './pages/home'
 import { Route, Router } from './Router'
 import styles from './styles/global.css'
 
-// import Home from './pages/home'
-
-const routes = {
-  '/': Home,
-}
-
 const App: FunctionalComponent = () => {
   const [active, setActive] = useState(false)
 

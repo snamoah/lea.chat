@@ -15,9 +15,10 @@
   appearance: none;
   border: none;
   overflow: auto;
-  font-size: 14px;
+  font-size: 12px;
   max-height: 40px;
   width: 100%;
+  font-family: 'VarelaRound';
 }
 
 .textarea::placeholder {

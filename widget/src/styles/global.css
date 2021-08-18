@@ -1,4 +1,12 @@
+@font-face {
+  font-family: 'VarelaRound';
+  src: url('fonts/VarelaRound.woff') format('woff'),
+    url('fonts/VarelaRound.woff2') format('woff2');
+  font-display: swap;
+}
+
 .root {
+  --color-white: #fff;
   --color-blue: #0466c8;
   --color-green: #00cb83;
   --color-grey-darker: #5c677d;
@@ -11,6 +19,7 @@
   position: fixed;
   display: flex;
   flex-direction: column;
+  font-family: 'VarelaRound';
 }
 
 .bottom {

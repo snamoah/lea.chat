@@ -46,7 +46,7 @@ module.exports = (env) => {
                 loader: 'css-loader',
                 options: {
                   modules: {
-                    localIdentName: '[name]-[local]-[hash:base64:5]',
+                    localIdentName: '[hash:base64:5]',
                   },
                   sourceMap: isDev,
                 },

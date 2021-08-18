@@ -15,7 +15,7 @@
 
 .right {
   border-top-right-radius: 0;
-  background-color: var(--color-blue);
+  background-color: var(--color-blue-light);
   margin-left: auto;
   color: white;
 }

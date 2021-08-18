@@ -1,13 +1,25 @@
 import { h } from 'preact'
+import { useState } from 'preact/hooks'
 import MessageFormComponent from '../components/MessageForm'
 
-const MessageForm = () => {
+interface MessageFormContainerProps {
+  onSubmit(message: string): void
+}
+
+const MessageForm = ({ onSubmit: submitForm }: MessageFormContainerProps) => {
+  const [message, setMessage] = useState('')
+
   const onSubmit = (e: Event) => {
     e.preventDefault()
+    submitForm(message)
+    setMessage('')
   }
+
   return (
     <MessageFormComponent
-      // disabled={true}
+      disabled={!message}
+      message={message}
+      onTextChange={setMessage}
       onSubmit={onSubmit}
     />
   )

@@ -1,4 +1,4 @@
-import { Fragment, h } from 'preact'
+import { Fragment, h, RefObject } from 'preact'
 import MessageInput from './MessageInput'
 import IconButton from '../../../components/IconButton'
 import SendIcon from '../../../icons/SendIcon'
@@ -11,13 +11,26 @@ import PaperClipIcon from '../../../icons/PaperClipIcon'
 import VerticalThreeDotsIcon from '../../../icons/VerticalThreeDotsIcon'
 
 export interface MessageFormProps {
-  onSubmit(e: Event): void
+  message: string
   disabled?: boolean
   onFocus?(): void
+  onSubmit(e: Event): void
+  onTextChange(text: string): void
 }
-const MessageForm = ({ onFocus, disabled, onSubmit }: MessageFormProps) => (
+const MessageForm = ({
+  message,
+  onFocus,
+  disabled,
+  onSubmit,
+  onTextChange,
+}: MessageFormProps) => (
   <form className={styles.form} onSubmit={onSubmit}>
-    <MessageInput classNames={styles.input} onFocus={onFocus} />
+    <MessageInput
+      value={message}
+      onChange={onTextChange}
+      classNames={styles.input}
+      onFocus={onFocus}
+    />
 
     {disabled && (
       <div className={styles.actions}>

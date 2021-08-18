@@ -3,7 +3,11 @@ import Layout from '../layouts/DefaultLayout'
 import MessageForm from '../modules/messaging/containers/MessageForm'
 
 const Home: FunctionComponent = () => {
-  return <Layout footer={<MessageForm />} />
+  const onSubmit = (text: string) => {
+    console.log(text)
+  }
+
+  return <Layout footer={<MessageForm onSubmit={onSubmit} />} />
 }
 
 export default Home

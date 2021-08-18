@@ -6,6 +6,7 @@
 
 .input {
   flex-grow: 1;
+  transition: all 1s ease;
 }
 
 .submitButton {
@@ -22,7 +23,7 @@
 }
 
 .actions {
-  display: inline-block;
+  display: flex;
   color: var(--color-grey-dark);
 }
 

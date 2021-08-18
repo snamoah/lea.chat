@@ -1,15 +1,23 @@
+.container {
+  position: relative;
+  display: block;
+  border-radius: 30px;
+  padding: 0.7em 1em;
+  background-color: var(--color-grey-lighter);
+}
+
 .textarea {
   display: block;
   resize: none;
   outline: none;
   color: var(--color-grey-darker);
-  background: var(--color-grey-lighter);
+  background-color: transparent;
   appearance: none;
   border: none;
   overflow: auto;
-  border-radius: 30px;
-  min-height: 30px;
   font-size: 14px;
+  max-height: 40px;
+  width: 100%;
 }
 
 .textarea::placeholder {

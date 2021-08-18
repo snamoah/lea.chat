@@ -17,7 +17,7 @@ const IconComponent = ({ size: defaultSize, svg }: IconComponent) => {
       version="1.1"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
-      style="display: inline-block;"
+      style="display: block;"
       viewBox={`0 0 ${defaultSize} ${defaultSize}`}
     >
       {svg()}

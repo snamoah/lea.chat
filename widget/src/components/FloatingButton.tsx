@@ -11,7 +11,7 @@ interface FloatingButtonProps {
 const FloatingButton: FunctionComponent<FloatingButtonProps> = ({ onClick, active }) => {
   return (
     <div className={styles.container} onClick={onClick}>
-      {active ? <CloseIcon /> : <ChatBubbleIcon />}
+      {active ? <CloseIcon size={20} /> : <ChatBubbleIcon size={30} />}
     </div>
   )
 }

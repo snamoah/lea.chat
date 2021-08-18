@@ -1,0 +1,17 @@
+.textarea {
+  display: block;
+  resize: none;
+  outline: none;
+  color: var(--color-grey-darker);
+  background: var(--color-grey-lighter);
+  appearance: none;
+  border: none;
+  overflow: auto;
+  border-radius: 30px;
+  min-height: 30px;
+  font-size: 14px;
+}
+
+.textarea::placeholder {
+  color: var(--color-grey-light);
+}

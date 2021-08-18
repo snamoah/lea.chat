@@ -1,12 +1,15 @@
-import { h, FunctionComponent } from 'preact'
+import { h, FunctionComponent, VNode } from 'preact'
 import styles from '../styles/DefaultLayout.css'
 
-const DefaultLayout: FunctionComponent = ({ children }) => {
+interface Props {
+  footer?: VNode
+}
+const DefaultLayout: FunctionComponent<Props> = ({ footer, children }) => {
   return (
     <div className={styles.container}>
       <header className={styles.header} />
       <main className={styles.main}>{children}</main>
-      <footer className={styles.footer} />
+      {footer && <footer className={styles.footer}>{footer}</footer>}
     </div>
   )
 }

@@ -1,15 +1,16 @@
 .container {
-  max-width: 300px;
-  width: 300px;
-  border-radius: 12px;
+  max-width: 350px;
+  width: 350px;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  height: 500px;
 }
 
 .header {
-  height: 60px;
+  height: 100px;
   background-color: var(--color-blue);
   margin: 0;
   position: relative;
@@ -18,11 +19,11 @@
 }
 
 .main {
+  flex-grow: 1;
   padding: 0 1em;
 }
 
 .footer {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  min-height: 10px;
 }

@@ -1,0 +1,10 @@
+.wrapper {
+  display: inline-block;
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+.wrapper:hover {
+  cursor: pointer;
+}

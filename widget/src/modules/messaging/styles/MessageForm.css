@@ -1,0 +1,31 @@
+.form {
+  padding: 1.5em;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  flex-grow: 1;
+}
+
+.submitButton {
+  margin-left: 1em;
+  color: var(--color-blue);
+}
+
+.submitButtonDisabled {
+  color: var(--color-grey-light);
+}
+
+.submitButtonDisabled:hover {
+  cursor: default;
+}
+
+.actions {
+  display: inline-block;
+  color: var(--color-grey-dark);
+}
+
+.actions > * {
+  margin-left: 0.5em;
+}

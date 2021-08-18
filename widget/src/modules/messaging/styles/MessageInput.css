@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+  display: block;
+  border-radius: 30px;
+  padding: 0.7em 1em;
+  background-color: var(--color-grey-lighter);
+}
+
+.textarea {
+  display: block;
+  resize: none;
+  outline: none;
+  color: var(--color-grey-darker);
+  background-color: transparent;
+  appearance: none;
+  border: none;
+  overflow: auto;
+  font-size: 12px;
+  max-height: 40px;
+  width: 100%;
+  font-family: 'VarelaRound';
+}
+
+.textarea::placeholder {
+  color: var(--color-grey-light);
+}

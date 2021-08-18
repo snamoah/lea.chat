@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  padding-left: 1em;
+}
+
+.container img {
+  border-radius: 50%;
+  background-color: white;
+}
+
+.container h3 {
+  margin: 0;
+  margin-left: 0.5em;
+  color: var(--color-white);
+}

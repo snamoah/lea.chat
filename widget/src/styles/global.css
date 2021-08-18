@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'VarelaRound';
+  src: url('fonts/VarelaRound.woff') format('woff'),
+    url('fonts/VarelaRound.woff2') format('woff2');
+  font-display: swap;
+}
+
+.root {
+  --color-white: #fff;
+  --color-blue: #0466c8;
+  --color-blue-light: #0e7be4;
+  --color-green: #00cb83;
+  --color-grey-darker: #5c677d;
+  --color-grey-dark: #979dac;
+  --color-grey-light: rgba(151, 157, 172, 0.5);
+  --color-grey-lighter: rgba(151, 157, 172, 0.16);
+}
+
+.container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  font-family: 'VarelaRound';
+}
+
+.bottom {
+  bottom: 1.5em;
+}
+
+.right {
+  right: 1.5em;
+}
+
+.left {
+  left: 1.5em;
+}

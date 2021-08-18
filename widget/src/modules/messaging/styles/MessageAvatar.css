@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  font-size: 12px;
+  width: 100%;
+  color: var(--color-grey-darker);
+  margin-top: 1em;
+}
+
+.avatar {
+  display: block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-grey-light);
+}
+
+.avatar .onlineStatus {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-green);
+  border: 2px solid var(--color-white);
+}
+
+.content {
+  margin-left: 0.8em;
+}
+
+.content header {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.content p {
+  margin: 0;
+  color: var(--color-grey-dark);
+}

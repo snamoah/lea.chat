@@ -6,7 +6,7 @@ const DefaultLayout: FunctionComponent = ({ children }) => {
     <div className={styles.container}>
       <header className={styles.header} />
       <main className={styles.main}>{children}</main>
-      <footer />
+      <footer className={styles.footer} />
     </div>
   )
 }

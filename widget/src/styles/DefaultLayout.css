@@ -1,15 +1,28 @@
 .container {
   max-width: 300px;
   width: 300px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 
 .header {
-  height: 30px;
+  height: 60px;
   background-color: var(--color-blue);
   margin: 0;
+  position: relative;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .main {
-  background-color: var(--color-grey-lighter);
   padding: 0 1em;
+}
+
+.footer {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  min-height: 10px;
 }

@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import styled from '@emotion/styled'
 import Logo from './Logo'
+import { dashboard, exit, clipboard, user } from '../../../assets/icons'
 
 const Container = styled.div`
   position: fixed;
@@ -12,12 +13,37 @@ const Container = styled.div`
 `
 
 const SideNav = styled.nav`
-  width: 70px;
+  width: 80px;
   background-color: ${({ theme }) => theme.colors.blue.darker};
   padding-top: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  font-size: 10px;
+  color: ${({ theme }) => theme.colors.grey.light};
+
+  & > ul {
+    padding: 0;
+    list-style-type: none;
+
+    & li {
+      margin-top: 2em;
+      text-align: center;
+
+      & > img {
+        text-align: center;
+      }
+    }
+  }
+
+  & > ul:first-of-type {
+    flex: 1;
+    margin-top: 5em;
+  }
+  & > ul:last-of-type {
+    justify-self: flex-end;
+  }
 `
 
 const Main = styled.main`
@@ -129,6 +155,28 @@ const MainLayout: FC = () => {
     <Container>
       <SideNav>
         <Logo />
+
+        <ul>
+          <li>
+            <img src={dashboard} width={30} height={30} />
+            <p>Dashboard</p>
+          </li>
+          <li>
+            <img src={clipboard} width={30} height={30} />
+            <p>Tasks</p>
+          </li>
+        </ul>
+
+        <ul>
+          <li>
+            <img src={user} width={30} height={30} />
+            <p>Profile</p>
+          </li>
+          <li>
+            <img src={exit} width={30} height={30} />
+            <p>Logout</p>
+          </li>
+        </ul>
       </SideNav>
       <Main>
         <ContactListSection>

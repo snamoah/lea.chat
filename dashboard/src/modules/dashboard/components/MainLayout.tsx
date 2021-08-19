@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import styled from '@emotion/styled'
 import Logo from './Logo'
-import { dashboard, exit, clipboard, user } from '../../../assets/icons'
+import { dashboard, exit, clipboard, user, send } from '../../../assets/icons'
 
 const Container = styled.div`
   position: fixed;
@@ -151,12 +151,37 @@ const MessageArea = styled.section`
   flex: 1;
 `
 const MessageForm = styled.footer`
-  background: red;
-  height: 100px;
+  height: 50px;
+  display: flex;
+  padding: 1.5em;
+`
+
+const MessageInput = styled.input`
+  flex: 1;
+  border-radius: 30px;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.grey.lighter};
+  padding: 0 1em;
+  outline: none;
+  font-size: 14px;
+  font-family: 'VarelaRound';
+  color: ${({ theme }) => theme.colors.grey.darker};
+`
+
+const MessageSubmitButton = styled.button`
+  background: transparent;
+  padding: 0;
+  outline: 0;
+  border: none;
+  margin-left: 1em;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const Aside = styled.aside`
-  background: ${({ theme }) => theme.colors.grey.light};
+  background-color: rgba(151, 157, 172, 0.05);
   flex: 1;
 `
 
@@ -226,7 +251,12 @@ const MainLayout: FC = () => {
             <p>Reply to message</p>
           </ChatHeader>
           <MessageArea></MessageArea>
-          <MessageForm></MessageForm>
+          <MessageForm>
+            <MessageInput />
+            <MessageSubmitButton>
+              <img src={send} width={30} height={30} />
+            </MessageSubmitButton>
+          </MessageForm>
         </ChatWindow>
         <Aside></Aside>
       </Main>

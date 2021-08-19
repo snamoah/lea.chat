@@ -27,6 +27,7 @@ const theme = {
     grey: {
       default: '#7D8597',
       light: '#979DAC',
+      lighter: 'rgba(151, 157, 172, .16)',
       dark: '#5C677D',
       darker: '#33415C',
     },

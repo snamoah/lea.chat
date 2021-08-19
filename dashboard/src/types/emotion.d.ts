@@ -3,6 +3,7 @@ import '@emotion/react'
 interface ThemeVariants {
   default: string
   light: string
+  lighter?: string
   dark: string
   darker: string
 }

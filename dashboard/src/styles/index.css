@@ -1,0 +1,15 @@
+@font-face {
+  font-family: 'VarelaRound';
+  src: url('fonts/VarelaRound-Regular.woff') format('woff'),
+    url('fonts/VarelaRound-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'VarelaRound';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

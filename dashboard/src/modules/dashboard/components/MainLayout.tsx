@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import styled from '@emotion/styled'
+import Logo from './Logo'
 
 const Container = styled.div`
   position: fixed;
@@ -13,6 +14,10 @@ const Container = styled.div`
 const SideNav = styled.nav`
   width: 70px;
   background-color: ${({ theme }) => theme.colors.blue.darker};
+  padding-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const Main = styled.main`
@@ -122,7 +127,9 @@ const Aside = styled.aside`
 const MainLayout: FC = () => {
   return (
     <Container>
-      <SideNav />
+      <SideNav>
+        <Logo />
+      </SideNav>
       <Main>
         <ContactListSection>
           <ContactListTitle>

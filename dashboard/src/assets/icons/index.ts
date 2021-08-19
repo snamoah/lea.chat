@@ -1,4 +1,3 @@
-import React from 'react'
 import DashboardIcon from './Dashboard'
 import ExitIcon from './Exit'
 import UserIcon from './User'

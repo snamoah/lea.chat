@@ -21,7 +21,7 @@ const Container = styled.div`
 const SideNav = styled.nav`
   width: 80px;
   background-color: ${({ theme }) => theme.colors.blue.darker};
-  padding-top: 1em;
+  padding-top: 2.5em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,11 +46,22 @@ const Menu = styled.ul`
 const MenuItem = styled.li<{ active?: boolean }>`
   margin-top: 2em;
   text-align: center;
+  position: relative;
 
   ${({ theme, active }) =>
     active &&
     `
       color: ${theme.colors.white};
+      &::before {
+          position: absolute;
+          left: 0;
+          content: '*';
+          height: 100%;
+          width: 4px;
+          border-top-right-radius: 2px;
+          border-bottom-right-radius: 2px;
+          background-color: ${theme.colors.white};
+      }
     `}
 `
 
@@ -156,7 +167,8 @@ const ChatHeader = styled.header`
 
 const MessageArea = styled.section`
   flex: 1;
-  padding: 0 1em;
+  padding: 0 2em;
+  overflow: auto;
 `
 
 const MessageBubble = styled.div`
@@ -290,6 +302,51 @@ const MainLayout: FC = () => {
             <p>Reply to message</p>
           </ChatHeader>
           <MessageArea>
+            <Message>
+              <MessageBubble>
+                Howdy, is there something I can help you with today?
+              </MessageBubble>
+            </Message>
+            <Message>
+              <MessageBubble>Just let me know</MessageBubble>
+            </Message>
+            <Message right>
+              <MessageBubble>
+                Hello Samuel, I would like to make an enquiry about what we spoke about
+                the last time. My stuff isn’t working and coming at all. I need a new
+                machine
+              </MessageBubble>
+            </Message>
+            <Message>
+              <MessageBubble>
+                Howdy, is there something I can help you with today?
+              </MessageBubble>
+            </Message>
+            <Message>
+              <MessageBubble>Just let me know</MessageBubble>
+            </Message>
+            <Message right>
+              <MessageBubble>
+                Hello Samuel, I would like to make an enquiry about what we spoke about
+                the last time. My stuff isn’t working and coming at all. I need a new
+                machine
+              </MessageBubble>
+            </Message>
+            <Message>
+              <MessageBubble>
+                Howdy, is there something I can help you with today?
+              </MessageBubble>
+            </Message>
+            <Message>
+              <MessageBubble>Just let me know</MessageBubble>
+            </Message>
+            <Message right>
+              <MessageBubble>
+                Hello Samuel, I would like to make an enquiry about what we spoke about
+                the last time. My stuff isn’t working and coming at all. I need a new
+                machine
+              </MessageBubble>
+            </Message>
             <Message>
               <MessageBubble>
                 Howdy, is there something I can help you with today?

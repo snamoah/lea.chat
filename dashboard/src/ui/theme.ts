@@ -32,6 +32,7 @@ const theme = {
       darker: '#33415C',
     },
     black: '#000',
+    white: '#fff',
   },
 }
 

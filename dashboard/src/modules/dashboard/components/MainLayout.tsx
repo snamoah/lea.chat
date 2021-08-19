@@ -147,9 +147,39 @@ const ChatHeader = styled.header`
 `
 
 const MessageArea = styled.section`
-  background: orange;
   flex: 1;
+  padding: 0 1em;
 `
+
+const MessageBubble = styled.div`
+  max-width: 40%;
+  padding: 1em;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  background-color: ${({ theme }) => theme.colors.grey.lighter};
+  border-top-right-radius: 15px;
+  font-size: 12px;
+  margin-top: 1em;
+`
+
+const Message = styled.div<{ right?: boolean }>`
+  display: flex;
+  width: 100%;
+
+  ${({ theme, right }) =>
+    right &&
+    `
+    justify-content: flex-end;    
+
+    & > div {
+        background-color: ${theme.colors.blue.default};
+        border-top-right-radius: 0;
+        border-top-left-radius: 15px;
+        color: ${theme.colors.white};
+    }
+  `}
+`
+
 const MessageForm = styled.footer`
   height: 50px;
   display: flex;
@@ -250,7 +280,23 @@ const MainLayout: FC = () => {
             <h2>Jenny Thomas</h2>
             <p>Reply to message</p>
           </ChatHeader>
-          <MessageArea></MessageArea>
+          <MessageArea>
+            <Message>
+              <MessageBubble>
+                Howdy, is there something I can help you with today?
+              </MessageBubble>
+            </Message>
+            <Message>
+              <MessageBubble>Just let me know</MessageBubble>
+            </Message>
+            <Message right>
+              <MessageBubble>
+                Hello Samuel, I would like to make an enquiry about what we spoke about
+                the last time. My stuff isn’t working and coming at all. I need a new
+                machine
+              </MessageBubble>
+            </Message>
+          </MessageArea>
           <MessageForm>
             <MessageInput />
             <MessageSubmitButton>

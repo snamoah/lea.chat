@@ -132,8 +132,18 @@ const ChatWindow = styled.div`
 `
 
 const ChatHeader = styled.header`
-  background: green;
   height: 100px;
+  padding: 0 1em;
+
+  & > h2 {
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+
+  & > p {
+    margin: 0;
+    color: ${({ theme }) => theme.colors.grey.light};
+  }
 `
 
 const MessageArea = styled.section`
@@ -200,7 +210,6 @@ const MainLayout: FC = () => {
                 <span>13:13am</span>
               </ItemHeader>
               <ItemContent>Hello there, I have ...</ItemContent>
-              <UnreadBadge />
             </ContactListBodyItem>
             <ContactListBodyItem>
               <ItemHeader>
@@ -208,12 +217,14 @@ const MainLayout: FC = () => {
                 <span>13:13am</span>
               </ItemHeader>
               <ItemContent>Hello there, I have ...</ItemContent>
-              <UnreadBadge />
             </ContactListBodyItem>
           </ContactListBody>
         </ContactListSection>
         <ChatWindow>
-          <ChatHeader></ChatHeader>
+          <ChatHeader>
+            <h2>Jenny Thomas</h2>
+            <p>Reply to message</p>
+          </ChatHeader>
           <MessageArea></MessageArea>
           <MessageForm></MessageForm>
         </ChatWindow>

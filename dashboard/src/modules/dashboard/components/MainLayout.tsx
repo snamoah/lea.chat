@@ -1,7 +1,13 @@
 import React, { FC } from 'react'
 import styled from '@emotion/styled'
 import Logo from './Logo'
-import { dashboard, exit, clipboard, user, send } from '../../../assets/icons'
+import {
+  DashboardIcon,
+  ClipboardIcon,
+  UserIcon,
+  ExitIcon,
+  SendIcon,
+} from '../../../assets/icons'
 
 const Container = styled.div`
   position: fixed;
@@ -22,28 +28,30 @@ const SideNav = styled.nav`
 
   font-size: 10px;
   color: ${({ theme }) => theme.colors.grey.light};
+`
 
-  & > ul {
-    padding: 0;
-    list-style-type: none;
-
-    & li {
-      margin-top: 2em;
-      text-align: center;
-
-      & > img {
-        text-align: center;
-      }
-    }
-  }
-
-  & > ul:first-of-type {
+const Menu = styled.ul`
+  width: 100%;
+  padding: 0;
+  list-style-type: none;
+  &:first-of-type {
     flex: 1;
     margin-top: 5em;
   }
-  & > ul:last-of-type {
+  &:last-of-type {
     justify-self: flex-end;
   }
+`
+
+const MenuItem = styled.li<{ active?: boolean }>`
+  margin-top: 2em;
+  text-align: center;
+
+  ${({ theme, active }) =>
+    active &&
+    `
+      color: ${theme.colors.white};
+    `}
 `
 
 const Main = styled.main`
@@ -198,9 +206,10 @@ const MessageInput = styled.input`
   color: ${({ theme }) => theme.colors.grey.darker};
 `
 
-const MessageSubmitButton = styled.button`
+const MessageSubmitButton = styled.button<{ disabled?: boolean }>`
   background: transparent;
-  padding: 0;
+  color: ${({ theme, disabled }) =>
+    disabled ? theme.colors.grey.default : theme.colors.blue.dark};
   outline: 0;
   border: none;
   margin-left: 1em;
@@ -221,27 +230,27 @@ const MainLayout: FC = () => {
       <SideNav>
         <Logo />
 
-        <ul>
-          <li>
-            <img src={dashboard} width={30} height={30} />
+        <Menu>
+          <MenuItem>
+            <DashboardIcon size={25} />
             <p>Dashboard</p>
-          </li>
-          <li>
-            <img src={clipboard} width={30} height={30} />
+          </MenuItem>
+          <MenuItem active>
+            <ClipboardIcon size={30} />
             <p>Tasks</p>
-          </li>
-        </ul>
+          </MenuItem>
+        </Menu>
 
-        <ul>
-          <li>
-            <img src={user} width={30} height={30} />
+        <Menu>
+          <MenuItem>
+            <UserIcon size={30} />
             <p>Profile</p>
-          </li>
-          <li>
-            <img src={exit} width={30} height={30} />
+          </MenuItem>
+          <MenuItem>
+            <ExitIcon size={25} />
             <p>Logout</p>
-          </li>
-        </ul>
+          </MenuItem>
+        </Menu>
       </SideNav>
       <Main>
         <ContactListSection>
@@ -300,7 +309,7 @@ const MainLayout: FC = () => {
           <MessageForm>
             <MessageInput />
             <MessageSubmitButton>
-              <img src={send} width={30} height={30} />
+              <SendIcon size={30} />
             </MessageSubmitButton>
           </MessageForm>
         </ChatWindow>

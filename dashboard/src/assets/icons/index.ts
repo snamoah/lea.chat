@@ -1,7 +1,8 @@
-import dashboard from './dashboard.svg'
-import exit from './exit.svg'
-import user from './user.svg'
-import clipboard from './clipboard.svg'
-import send from './send.svg'
+import React from 'react'
+import DashboardIcon from './Dashboard'
+import ExitIcon from './Exit'
+import UserIcon from './User'
+import ClipboardIcon from './Clipboard'
+import SendIcon from './Send'
 
-export { dashboard, exit, user, clipboard, send }
+export { DashboardIcon, ExitIcon, UserIcon, ClipboardIcon, SendIcon }

@@ -30,6 +30,7 @@ const theme = {
       dark: '#5C677D',
       darker: '#33415C',
     },
+    black: '#000',
   },
 }
 

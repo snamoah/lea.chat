@@ -1,9 +1,9 @@
 {
   "private": true,
   "workspaces": [
+    "dashboard",
     "widget",
-    "server",
-    "dashboard"
+    "server"
   ],
   "devDependencies": {
     "eslint": "^7.32.0",
@@ -18,7 +18,7 @@
     "lint": "yarn workspaces run lint"
   },
   "lint-staged": {
-    "*.+(js|ts|tsx|css)": [
+    "*.+(js|ts|tsx)": [
       "yarn lint --fix"
     ],
     "*.+(js|ts|tsx|md|css|json)": [

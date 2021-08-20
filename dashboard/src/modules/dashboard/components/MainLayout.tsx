@@ -9,7 +9,7 @@ import {
   SendIcon,
 } from '../../../assets/icons'
 import MessageInput from './MessageInput'
-import { NewMessage } from '../containers/MainLayout'
+import { MessageRequest, NewMessage } from '../containers/MainLayout'
 
 const Container = styled.div`
   position: fixed;
@@ -100,6 +100,7 @@ const ItemHeader = styled.header`
 
 const ItemContent = styled.div`
   color: ${({ theme }) => theme.colors.grey.light};
+  text-overflow: ellipsis;
 `
 
 const ContactListBody = styled.ul`
@@ -227,19 +228,25 @@ const Aside = styled.aside`
 `
 
 interface MainLayoutProps {
-  chatAreaRef: RefObject<HTMLElement>
+  activeUser: string
   newMessage: string
-  onInputNewMessage(message: string): void
   messages: NewMessage[]
+  requests: MessageRequest[]
+  chatAreaRef: RefObject<HTMLElement>
   sendMessage(event: FormEvent): void
+  onInputNewMessage(message: string): void
+  setActiveUser(id: string): void
 }
 
 const MainLayout: FC<MainLayoutProps> = ({
+  activeUser,
   messages,
   chatAreaRef,
   newMessage,
+  setActiveUser,
   onInputNewMessage,
   sendMessage,
+  requests,
 }: MainLayoutProps) => {
   return (
     <Container>
@@ -272,38 +279,34 @@ const MainLayout: FC<MainLayoutProps> = ({
         <ContactListSection>
           <ContactListTitle>
             <Title>Tasks</Title>
-            <SubTitle>2 new tasks</SubTitle>
+            <SubTitle>{requests.length} new tasks</SubTitle>
           </ContactListTitle>
 
           <ContactListBody>
-            <ContactListBodyItem active>
-              <ItemHeader>
-                <span>Jenny Thomas</span>
-                <span>13:13am</span>
-              </ItemHeader>
-              <ItemContent>Hello there, I have ...</ItemContent>
-              <UnreadBadge />
-            </ContactListBodyItem>
-            <ContactListBodyItem>
-              <ItemHeader>
-                <span>Jenny Thomas</span>
-                <span>13:13am</span>
-              </ItemHeader>
-              <ItemContent>Hello there, I have ...</ItemContent>
-            </ContactListBodyItem>
-            <ContactListBodyItem>
-              <ItemHeader>
-                <span>Jenny Thomas</span>
-                <span>13:13am</span>
-              </ItemHeader>
-              <ItemContent>Hello there, I have ...</ItemContent>
-            </ContactListBodyItem>
+            {requests.map((request, index) => (
+              <ContactListBodyItem
+                key={index}
+                onClick={() => setActiveUser(request.requestId)}
+                active={request.requestId === activeUser}
+              >
+                <ItemHeader>
+                  <span>{request.requestId}</span>
+                  <span>13:13am</span>
+                </ItemHeader>
+                <ItemContent>{request.content}</ItemContent>
+                <UnreadBadge />
+              </ContactListBodyItem>
+            ))}
           </ContactListBody>
         </ContactListSection>
         <ChatWindow>
           <ChatHeader>
-            <h2>Jenny Thomas</h2>
-            <p>Reply to message</p>
+            {activeUser && (
+              <>
+                <h2>{activeUser}</h2>
+                <p>Reply to message</p>
+              </>
+            )}
           </ChatHeader>
           <MessageArea ref={chatAreaRef}>
             {messages.map((message, index) => (

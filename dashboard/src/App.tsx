@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { css, Global, ThemeProvider } from '@emotion/react'
-import MainLayout from './modules/dashboard/components/MainLayout'
+import MainLayout from './modules/dashboard/containers/MainLayout'
 import theme from './ui/theme'
 
 const globalStyles = css`

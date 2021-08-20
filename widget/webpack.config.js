@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { resolve } = require('path')
+const DotEnv = require('dotenv-webpack')
 const copyWebpackPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
 
 const outputDir = './build'
 
 module.exports = (env) => {
   const isDev = !(env && env.production)
+  const dotenvPath = isDev ? '.env.development' : '.env.production'
 
   return [
     {
@@ -27,8 +30,12 @@ module.exports = (env) => {
                 },
               ],
             }),
+            new DotEnv({
+              path: dotenvPath,
+              safe: true,
+            }),
           ]
-        : [],
+        : [new DotEnv({ path: dotenvPath })],
       optimization: {
         minimize: !isDev,
       },

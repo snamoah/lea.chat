@@ -21,21 +21,19 @@ module.exports = (env) => {
       devServer: {
         contentBase: outputDir,
       },
-      plugins: isDev
-        ? [
-            new copyWebpackPlugin({
-              patterns: [
-                {
-                  from: 'public/',
-                },
-              ],
-            }),
-            new DotEnv({
-              path: dotenvPath,
-              safe: true,
-            }),
-          ]
-        : [new DotEnv({ path: dotenvPath })],
+      plugins: [
+        new copyWebpackPlugin({
+          patterns: [
+            {
+              from: 'public/',
+            },
+          ],
+        }),
+        new DotEnv({
+          path: dotenvPath,
+          safe: true,
+        }),
+      ],
       optimization: {
         minimize: !isDev,
       },

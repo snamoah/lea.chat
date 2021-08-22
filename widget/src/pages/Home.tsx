@@ -1,4 +1,6 @@
 import { FunctionComponent, h } from 'preact'
+import { useMemo, useState, useEffect } from 'preact/hooks'
+import { io } from 'socket.io-client'
 import CompanyTitle from '../components/CompanyTitle'
 import Layout from '../layouts/DefaultLayout'
 import Message from '../modules/messaging/components/Message'
@@ -7,9 +9,49 @@ import MessageBubble from '../modules/messaging/components/MessageBubble'
 import MessageList from '../modules/messaging/components/MessageList'
 import MessageForm from '../modules/messaging/containers/MessageForm'
 
+interface NewMessage {
+  isAgent?: boolean
+  content: string
+  sentAt: string
+}
 const Home: FunctionComponent = () => {
+  const [messages, setMessages] = useState<NewMessage[]>([])
+  const socket = useMemo(() => io(process.env.WEBSOCKET_URL), [])
+
+  const requestId = useMemo(() => (Math.random() * 1000000).toString(), [])
+
+  useEffect(() => {
+    if (!socket || socket.connected) {
+      return
+    }
+
+    socket.on('connect', () => {
+      console.log('Socket connected')
+      socket.on('message', (message: NewMessage) => {
+        console.log('===> heya', message)
+        setMessages((prevMessages) => [...prevMessages, message])
+      })
+    })
+
+    return () => {
+      if (socket.connected) {
+        socket.disconnect()
+      }
+    }
+  }, [socket])
+
   const onSubmit = (text: string) => {
-    console.log(text)
+    if (!messages.length) {
+      socket.emit('message-request', {
+        requestId,
+        content: text,
+      })
+    } else {
+      socket.emit('message', {
+        requestId,
+        content: text,
+      })
+    }
   }
 
   return (
@@ -23,44 +65,21 @@ const Home: FunctionComponent = () => {
       footer={<MessageForm onSubmit={onSubmit} />}
     >
       <MessageList>
-        <Message>
-          <MessageAvatar
-            online={true}
-            imgSrc="https://github.com/snamoah/snamoah.dev/raw/main/src/images/sam_mobile.png"
-            name="Samuel Amoah"
-            date={new Date()}
-          />
-          <MessageBubble position="left">
-            Howdy, is there something I can help you with today?
-          </MessageBubble>
-        </Message>
-        <Message>
-          <MessageBubble position="left">Just let me know</MessageBubble>
-        </Message>
-        <Message>
-          <MessageBubble position="right">
-            Hello Samuel, I would like to make an enquiry about what we spoke about the
-            last time. My stuff isn’t working and coming at all. I need a new machine
-          </MessageBubble>
-        </Message>
-        <Message>
-          <MessageAvatar
-            online={true}
-            imgSrc="https://github.com/snamoah/snamoah.dev/raw/main/src/images/sam_mobile.png"
-            name="Samuel Amoah"
-            date={new Date()}
-          />
-          <MessageBubble position="left">
-            Alright, sure thing... did you try the points one and two from our
-            documentations?
-          </MessageBubble>
-        </Message>
-        <Message>
-          <MessageBubble position="right">
-            No, I tried that but that didn't lead me anywhere. Please help me. I don't
-            know what to do and I have a tight deadline
-          </MessageBubble>
-        </Message>
+        {messages.map((message, index) => (
+          <Message key={index}>
+            {message.isAgent && !messages[Math.max(index - 1, 0)].isAgent && (
+              <MessageAvatar
+                online={true}
+                imgSrc="https://github.com/snamoah/snamoah.dev/raw/main/src/images/sam_mobile.png"
+                name="Samuel Amoah"
+                date={new Date(message.sentAt)}
+              />
+            )}
+            <MessageBubble position={message.isAgent ? 'left' : 'right'}>
+              {message.content}
+            </MessageBubble>
+          </Message>
+        ))}
       </MessageList>
     </Layout>
   )

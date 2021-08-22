@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, FormEvent, RefObject } from 'react'
 import styled from '@emotion/styled'
 import Logo from './Logo'
 import {
@@ -8,6 +8,8 @@ import {
   ExitIcon,
   SendIcon,
 } from '../../../assets/icons'
+import MessageInput from './MessageInput'
+import { MessageRequest, NewMessage } from '../containers/MainLayout'
 
 const Container = styled.div`
   position: fixed;
@@ -98,6 +100,7 @@ const ItemHeader = styled.header`
 
 const ItemContent = styled.div`
   color: ${({ theme }) => theme.colors.grey.light};
+  text-overflow: ellipsis;
 `
 
 const ContactListBody = styled.ul`
@@ -200,22 +203,10 @@ const Message = styled.div<{ right?: boolean }>`
   `}
 `
 
-const MessageForm = styled.footer`
+const MessageForm = styled.form`
   height: 50px;
   display: flex;
   padding: 1.5em;
-`
-
-const MessageInput = styled.input`
-  flex: 1;
-  border-radius: 30px;
-  border: none;
-  background-color: ${({ theme }) => theme.colors.grey.lighter};
-  padding: 0 1em;
-  outline: none;
-  font-size: 14px;
-  font-family: 'VarelaRound';
-  color: ${({ theme }) => theme.colors.grey.darker};
 `
 
 const MessageSubmitButton = styled.button<{ disabled?: boolean }>`
@@ -236,7 +227,27 @@ const Aside = styled.aside`
   flex: 1;
 `
 
-const MainLayout: FC = () => {
+interface MainLayoutProps {
+  activeUser: string
+  newMessage: string
+  messages: NewMessage[]
+  requests: MessageRequest[]
+  chatAreaRef: RefObject<HTMLElement>
+  sendMessage(event: FormEvent): void
+  onInputNewMessage(message: string): void
+  setActiveUser(id: string): void
+}
+
+const MainLayout: FC<MainLayoutProps> = ({
+  activeUser,
+  messages,
+  chatAreaRef,
+  newMessage,
+  setActiveUser,
+  onInputNewMessage,
+  sendMessage,
+  requests,
+}: MainLayoutProps) => {
   return (
     <Container>
       <SideNav>
@@ -268,104 +279,45 @@ const MainLayout: FC = () => {
         <ContactListSection>
           <ContactListTitle>
             <Title>Tasks</Title>
-            <SubTitle>2 new tasks</SubTitle>
+            <SubTitle>{requests.length} new tasks</SubTitle>
           </ContactListTitle>
 
           <ContactListBody>
-            <ContactListBodyItem active>
-              <ItemHeader>
-                <span>Jenny Thomas</span>
-                <span>13:13am</span>
-              </ItemHeader>
-              <ItemContent>Hello there, I have ...</ItemContent>
-              <UnreadBadge />
-            </ContactListBodyItem>
-            <ContactListBodyItem>
-              <ItemHeader>
-                <span>Jenny Thomas</span>
-                <span>13:13am</span>
-              </ItemHeader>
-              <ItemContent>Hello there, I have ...</ItemContent>
-            </ContactListBodyItem>
-            <ContactListBodyItem>
-              <ItemHeader>
-                <span>Jenny Thomas</span>
-                <span>13:13am</span>
-              </ItemHeader>
-              <ItemContent>Hello there, I have ...</ItemContent>
-            </ContactListBodyItem>
+            {requests.map((request, index) => (
+              <ContactListBodyItem
+                key={index}
+                onClick={() => setActiveUser(request.requestId)}
+                active={request.requestId === activeUser}
+              >
+                <ItemHeader>
+                  <span>{request.requestId}</span>
+                  <span>13:13am</span>
+                </ItemHeader>
+                <ItemContent>{request.content}</ItemContent>
+                <UnreadBadge />
+              </ContactListBodyItem>
+            ))}
           </ContactListBody>
         </ContactListSection>
         <ChatWindow>
           <ChatHeader>
-            <h2>Jenny Thomas</h2>
-            <p>Reply to message</p>
+            {activeUser && (
+              <>
+                <h2>{activeUser}</h2>
+                <p>Reply to message</p>
+              </>
+            )}
           </ChatHeader>
-          <MessageArea>
-            <Message>
-              <MessageBubble>
-                Howdy, is there something I can help you with today?
-              </MessageBubble>
-            </Message>
-            <Message>
-              <MessageBubble>Just let me know</MessageBubble>
-            </Message>
-            <Message right>
-              <MessageBubble>
-                Hello Samuel, I would like to make an enquiry about what we spoke about
-                the last time. My stuff isn’t working and coming at all. I need a new
-                machine
-              </MessageBubble>
-            </Message>
-            <Message>
-              <MessageBubble>
-                Howdy, is there something I can help you with today?
-              </MessageBubble>
-            </Message>
-            <Message>
-              <MessageBubble>Just let me know</MessageBubble>
-            </Message>
-            <Message right>
-              <MessageBubble>
-                Hello Samuel, I would like to make an enquiry about what we spoke about
-                the last time. My stuff isn’t working and coming at all. I need a new
-                machine
-              </MessageBubble>
-            </Message>
-            <Message>
-              <MessageBubble>
-                Howdy, is there something I can help you with today?
-              </MessageBubble>
-            </Message>
-            <Message>
-              <MessageBubble>Just let me know</MessageBubble>
-            </Message>
-            <Message right>
-              <MessageBubble>
-                Hello Samuel, I would like to make an enquiry about what we spoke about
-                the last time. My stuff isn’t working and coming at all. I need a new
-                machine
-              </MessageBubble>
-            </Message>
-            <Message>
-              <MessageBubble>
-                Howdy, is there something I can help you with today?
-              </MessageBubble>
-            </Message>
-            <Message>
-              <MessageBubble>Just let me know</MessageBubble>
-            </Message>
-            <Message right>
-              <MessageBubble>
-                Hello Samuel, I would like to make an enquiry about what we spoke about
-                the last time. My stuff isn’t working and coming at all. I need a new
-                machine
-              </MessageBubble>
-            </Message>
+          <MessageArea ref={chatAreaRef}>
+            {messages.map((message, index) => (
+              <Message key={index} right={message.isAgent}>
+                <MessageBubble>{message.content}</MessageBubble>
+              </Message>
+            ))}
           </MessageArea>
-          <MessageForm>
-            <MessageInput />
-            <MessageSubmitButton>
+          <MessageForm onSubmit={sendMessage}>
+            <MessageInput value={newMessage} onInput={onInputNewMessage} />
+            <MessageSubmitButton onClick={sendMessage}>
               <SendIcon size={30} />
             </MessageSubmitButton>
           </MessageForm>

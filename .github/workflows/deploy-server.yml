@@ -26,13 +26,15 @@ jobs:
       - name: Install Dependencies
         run: yarn install
 
-
-      - name: Build and Deploy app
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      - name: Build
         run: |
           cd server
           yarn build
-          heroku container:login
-          heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web
-          heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web
+
+      - name: Deploy app
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          appdir: server

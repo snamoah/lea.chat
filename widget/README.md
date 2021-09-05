@@ -25,3 +25,7 @@ Add this script in your html
   Lea.init('USER_ACCOUNT_CODE_HERE')
 </script>
 ```
+
+
+## Demo
+View WIP Demo [here](https://leachat-widget.netlify.app/)
